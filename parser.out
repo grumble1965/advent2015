@@ -1,0 +1,393 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> elem
+Rule 1     elem -> list
+Rule 2     elem -> dict
+Rule 3     elem -> number
+Rule 4     elem -> name
+Rule 5     empty -> <empty>
+Rule 6     number -> MINUS NUMBER
+Rule 7     number -> NUMBER
+Rule 8     name -> QUOTE NAME QUOTE
+Rule 9     list -> LSQUARE list_elem RSQUARE
+Rule 10    list_elem -> empty
+Rule 11    list_elem -> elem
+Rule 12    list_elem -> elem COMMA list_elem
+Rule 13    dict -> LCURLY dict_list RCURLY
+Rule 14    dict_list -> empty
+Rule 15    dict_list -> dict_elem
+Rule 16    dict_list -> dict_elem COMMA dict_list
+Rule 17    dict_elem -> name COLON elem
+
+Terminals, with rules where they appear
+
+COLON                : 17
+COMMA                : 12 16
+LCURLY               : 13
+LSQUARE              : 9
+MINUS                : 6
+NAME                 : 8
+NUMBER               : 6 7
+QUOTE                : 8 8
+RCURLY               : 13
+RSQUARE              : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+dict                 : 2
+dict_elem            : 15 16
+dict_list            : 13 16
+elem                 : 11 12 17 0
+empty                : 10 14
+list                 : 1
+list_elem            : 9 12
+name                 : 4 17
+number               : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . elem
+    (1) elem -> . list
+    (2) elem -> . dict
+    (3) elem -> . number
+    (4) elem -> . name
+    (9) list -> . LSQUARE list_elem RSQUARE
+    (13) dict -> . LCURLY dict_list RCURLY
+    (6) number -> . MINUS NUMBER
+    (7) number -> . NUMBER
+    (8) name -> . QUOTE NAME QUOTE
+
+    LSQUARE         shift and go to state 6
+    LCURLY          shift and go to state 7
+    MINUS           shift and go to state 8
+    NUMBER          shift and go to state 9
+    QUOTE           shift and go to state 10
+
+    elem                           shift and go to state 1
+    list                           shift and go to state 2
+    dict                           shift and go to state 3
+    number                         shift and go to state 4
+    name                           shift and go to state 5
+
+state 1
+
+    (0) S' -> elem .
+
+
+
+state 2
+
+    (1) elem -> list .
+
+    $end            reduce using rule 1 (elem -> list .)
+    COMMA           reduce using rule 1 (elem -> list .)
+    RSQUARE         reduce using rule 1 (elem -> list .)
+    RCURLY          reduce using rule 1 (elem -> list .)
+
+
+state 3
+
+    (2) elem -> dict .
+
+    $end            reduce using rule 2 (elem -> dict .)
+    COMMA           reduce using rule 2 (elem -> dict .)
+    RSQUARE         reduce using rule 2 (elem -> dict .)
+    RCURLY          reduce using rule 2 (elem -> dict .)
+
+
+state 4
+
+    (3) elem -> number .
+
+    $end            reduce using rule 3 (elem -> number .)
+    COMMA           reduce using rule 3 (elem -> number .)
+    RSQUARE         reduce using rule 3 (elem -> number .)
+    RCURLY          reduce using rule 3 (elem -> number .)
+
+
+state 5
+
+    (4) elem -> name .
+
+    $end            reduce using rule 4 (elem -> name .)
+    COMMA           reduce using rule 4 (elem -> name .)
+    RSQUARE         reduce using rule 4 (elem -> name .)
+    RCURLY          reduce using rule 4 (elem -> name .)
+
+
+state 6
+
+    (9) list -> LSQUARE . list_elem RSQUARE
+    (10) list_elem -> . empty
+    (11) list_elem -> . elem
+    (12) list_elem -> . elem COMMA list_elem
+    (5) empty -> .
+    (1) elem -> . list
+    (2) elem -> . dict
+    (3) elem -> . number
+    (4) elem -> . name
+    (9) list -> . LSQUARE list_elem RSQUARE
+    (13) dict -> . LCURLY dict_list RCURLY
+    (6) number -> . MINUS NUMBER
+    (7) number -> . NUMBER
+    (8) name -> . QUOTE NAME QUOTE
+
+    RSQUARE         reduce using rule 5 (empty -> .)
+    LSQUARE         shift and go to state 6
+    LCURLY          shift and go to state 7
+    MINUS           shift and go to state 8
+    NUMBER          shift and go to state 9
+    QUOTE           shift and go to state 10
+
+    list_elem                      shift and go to state 11
+    empty                          shift and go to state 12
+    elem                           shift and go to state 13
+    list                           shift and go to state 2
+    dict                           shift and go to state 3
+    number                         shift and go to state 4
+    name                           shift and go to state 5
+
+state 7
+
+    (13) dict -> LCURLY . dict_list RCURLY
+    (14) dict_list -> . empty
+    (15) dict_list -> . dict_elem
+    (16) dict_list -> . dict_elem COMMA dict_list
+    (5) empty -> .
+    (17) dict_elem -> . name COLON elem
+    (8) name -> . QUOTE NAME QUOTE
+
+    RCURLY          reduce using rule 5 (empty -> .)
+    QUOTE           shift and go to state 10
+
+    dict_list                      shift and go to state 14
+    empty                          shift and go to state 15
+    dict_elem                      shift and go to state 16
+    name                           shift and go to state 17
+
+state 8
+
+    (6) number -> MINUS . NUMBER
+
+    NUMBER          shift and go to state 18
+
+
+state 9
+
+    (7) number -> NUMBER .
+
+    $end            reduce using rule 7 (number -> NUMBER .)
+    COMMA           reduce using rule 7 (number -> NUMBER .)
+    RSQUARE         reduce using rule 7 (number -> NUMBER .)
+    RCURLY          reduce using rule 7 (number -> NUMBER .)
+
+
+state 10
+
+    (8) name -> QUOTE . NAME QUOTE
+
+    NAME            shift and go to state 19
+
+
+state 11
+
+    (9) list -> LSQUARE list_elem . RSQUARE
+
+    RSQUARE         shift and go to state 20
+
+
+state 12
+
+    (10) list_elem -> empty .
+
+    RSQUARE         reduce using rule 10 (list_elem -> empty .)
+
+
+state 13
+
+    (11) list_elem -> elem .
+    (12) list_elem -> elem . COMMA list_elem
+
+    RSQUARE         reduce using rule 11 (list_elem -> elem .)
+    COMMA           shift and go to state 21
+
+
+state 14
+
+    (13) dict -> LCURLY dict_list . RCURLY
+
+    RCURLY          shift and go to state 22
+
+
+state 15
+
+    (14) dict_list -> empty .
+
+    RCURLY          reduce using rule 14 (dict_list -> empty .)
+
+
+state 16
+
+    (15) dict_list -> dict_elem .
+    (16) dict_list -> dict_elem . COMMA dict_list
+
+    RCURLY          reduce using rule 15 (dict_list -> dict_elem .)
+    COMMA           shift and go to state 23
+
+
+state 17
+
+    (17) dict_elem -> name . COLON elem
+
+    COLON           shift and go to state 24
+
+
+state 18
+
+    (6) number -> MINUS NUMBER .
+
+    $end            reduce using rule 6 (number -> MINUS NUMBER .)
+    COMMA           reduce using rule 6 (number -> MINUS NUMBER .)
+    RSQUARE         reduce using rule 6 (number -> MINUS NUMBER .)
+    RCURLY          reduce using rule 6 (number -> MINUS NUMBER .)
+
+
+state 19
+
+    (8) name -> QUOTE NAME . QUOTE
+
+    QUOTE           shift and go to state 25
+
+
+state 20
+
+    (9) list -> LSQUARE list_elem RSQUARE .
+
+    $end            reduce using rule 9 (list -> LSQUARE list_elem RSQUARE .)
+    COMMA           reduce using rule 9 (list -> LSQUARE list_elem RSQUARE .)
+    RSQUARE         reduce using rule 9 (list -> LSQUARE list_elem RSQUARE .)
+    RCURLY          reduce using rule 9 (list -> LSQUARE list_elem RSQUARE .)
+
+
+state 21
+
+    (12) list_elem -> elem COMMA . list_elem
+    (10) list_elem -> . empty
+    (11) list_elem -> . elem
+    (12) list_elem -> . elem COMMA list_elem
+    (5) empty -> .
+    (1) elem -> . list
+    (2) elem -> . dict
+    (3) elem -> . number
+    (4) elem -> . name
+    (9) list -> . LSQUARE list_elem RSQUARE
+    (13) dict -> . LCURLY dict_list RCURLY
+    (6) number -> . MINUS NUMBER
+    (7) number -> . NUMBER
+    (8) name -> . QUOTE NAME QUOTE
+
+    RSQUARE         reduce using rule 5 (empty -> .)
+    LSQUARE         shift and go to state 6
+    LCURLY          shift and go to state 7
+    MINUS           shift and go to state 8
+    NUMBER          shift and go to state 9
+    QUOTE           shift and go to state 10
+
+    elem                           shift and go to state 13
+    list_elem                      shift and go to state 26
+    empty                          shift and go to state 12
+    list                           shift and go to state 2
+    dict                           shift and go to state 3
+    number                         shift and go to state 4
+    name                           shift and go to state 5
+
+state 22
+
+    (13) dict -> LCURLY dict_list RCURLY .
+
+    $end            reduce using rule 13 (dict -> LCURLY dict_list RCURLY .)
+    COMMA           reduce using rule 13 (dict -> LCURLY dict_list RCURLY .)
+    RSQUARE         reduce using rule 13 (dict -> LCURLY dict_list RCURLY .)
+    RCURLY          reduce using rule 13 (dict -> LCURLY dict_list RCURLY .)
+
+
+state 23
+
+    (16) dict_list -> dict_elem COMMA . dict_list
+    (14) dict_list -> . empty
+    (15) dict_list -> . dict_elem
+    (16) dict_list -> . dict_elem COMMA dict_list
+    (5) empty -> .
+    (17) dict_elem -> . name COLON elem
+    (8) name -> . QUOTE NAME QUOTE
+
+    RCURLY          reduce using rule 5 (empty -> .)
+    QUOTE           shift and go to state 10
+
+    dict_elem                      shift and go to state 16
+    dict_list                      shift and go to state 27
+    empty                          shift and go to state 15
+    name                           shift and go to state 17
+
+state 24
+
+    (17) dict_elem -> name COLON . elem
+    (1) elem -> . list
+    (2) elem -> . dict
+    (3) elem -> . number
+    (4) elem -> . name
+    (9) list -> . LSQUARE list_elem RSQUARE
+    (13) dict -> . LCURLY dict_list RCURLY
+    (6) number -> . MINUS NUMBER
+    (7) number -> . NUMBER
+    (8) name -> . QUOTE NAME QUOTE
+
+    LSQUARE         shift and go to state 6
+    LCURLY          shift and go to state 7
+    MINUS           shift and go to state 8
+    NUMBER          shift and go to state 9
+    QUOTE           shift and go to state 10
+
+    name                           shift and go to state 5
+    elem                           shift and go to state 28
+    list                           shift and go to state 2
+    dict                           shift and go to state 3
+    number                         shift and go to state 4
+
+state 25
+
+    (8) name -> QUOTE NAME QUOTE .
+
+    $end            reduce using rule 8 (name -> QUOTE NAME QUOTE .)
+    COMMA           reduce using rule 8 (name -> QUOTE NAME QUOTE .)
+    RSQUARE         reduce using rule 8 (name -> QUOTE NAME QUOTE .)
+    COLON           reduce using rule 8 (name -> QUOTE NAME QUOTE .)
+    RCURLY          reduce using rule 8 (name -> QUOTE NAME QUOTE .)
+
+
+state 26
+
+    (12) list_elem -> elem COMMA list_elem .
+
+    RSQUARE         reduce using rule 12 (list_elem -> elem COMMA list_elem .)
+
+
+state 27
+
+    (16) dict_list -> dict_elem COMMA dict_list .
+
+    RCURLY          reduce using rule 16 (dict_list -> dict_elem COMMA dict_list .)
+
+
+state 28
+
+    (17) dict_elem -> name COLON elem .
+
+    COMMA           reduce using rule 17 (dict_elem -> name COLON elem .)
+    RCURLY          reduce using rule 17 (dict_elem -> name COLON elem .)
+
