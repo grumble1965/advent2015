@@ -286,15 +286,19 @@ class Test_Day13(TestCase):
 
 
 class Test_Day14(TestCase):
-    def test_partOne1(self):
-        d = Day14(['abcdef'])
+    def test_partOne(self):
+        testInput = ['Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.',
+                     'Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.']
+        d = Day14(testInput)
         d.parse()
-        self.assertEqual(True, d.partA())
+        self.assertEqual(1120, d.runRaceOld(1000))
 
-    def test_partOne2(self):
-        d = Day14(['pqrstuv'])
+    def test_partTwo(self):
+        testInput = ['Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.',
+                     'Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.']
+        d = Day14(testInput)
         d.parse()
-        self.assertEqual(True, d.partA())
+        self.assertEqual(689, d.runRaceNew(1000))
 
 
 if __name__ == '__main__':
