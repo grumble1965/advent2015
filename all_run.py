@@ -13,6 +13,12 @@ from day11 import Day11
 from day12 import Day12
 from day13 import Day13
 from day14 import Day14
+from day15 import Day15
+from day16 import Day16
+from day17 import Day17
+from day18 import Day18
+from day19 import Day19
+from day20 import Day20
 
 
 def main():
@@ -30,6 +36,12 @@ def main():
     runner = Runner(Day12(File_to_String("day12-live.txt"))).run()
     runner = Runner(Day13(File_to_String("day13-live.txt"))).run()
     runner = Runner(Day14(File_to_String("day14-live.txt"))).run()
+    runner = Runner(Day15(File_to_String("day15-live.txt"))).run()
+    runner = Runner(Day16(File_to_String("day16-live.txt"))).run()
+    runner = Runner(Day17(File_to_String("day17-live.txt"))).run()
+    runner = Runner(Day18(File_to_String("day18-live.txt"))).run()
+    runner = Runner(Day19(File_to_String("day19-live.txt"))).run()
+    runner = Runner(Day20(File_to_String("day20-live.txt"))).run()
 
 
 if __name__ == '__main__':

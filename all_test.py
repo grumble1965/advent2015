@@ -13,6 +13,12 @@ from day11 import Day11
 from day12 import Day12
 from day13 import Day13
 from day14 import Day14
+from day15 import Day15
+from day16 import Day16
+from day17 import Day17
+from day18 import Day18
+from day19 import Day19
+from day20 import Day20
 
 
 class Test_Day01(TestCase):
@@ -299,6 +305,90 @@ class Test_Day14(TestCase):
         d = Day14(testInput)
         d.parse()
         self.assertEqual(689, d.runRaceNew(1000))
+
+
+class Test_Day15(TestCase):
+    def test_partOne(self):
+        d = Day15(['Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8',
+                   'Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3'])
+        d.parse()
+        self.assertEqual(62842880, d.partA())
+
+    def test_partTwo(self):
+        d = Day15(['Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8',
+                   'Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3'])
+        d.parse()
+        self.assertEqual(57600000, d.partB())
+
+
+class Test_Day16(TestCase):
+    def test_partOne(self):
+        d = Day16(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day16(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day17(TestCase):
+    def test_partOne(self):
+        d = Day17(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day17(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day18(TestCase):
+    def test_partOne(self):
+        d = Day18(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day18(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day19(TestCase):
+    def test_partOne(self):
+        d = Day19(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day19(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day20(TestCase):
+    def test_partOne(self):
+        d = Day20(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day20(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
 
 
 if __name__ == '__main__':
