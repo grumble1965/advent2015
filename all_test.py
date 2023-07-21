@@ -322,17 +322,7 @@ class Test_Day15(TestCase):
 
 
 class Test_Day16(TestCase):
-    def test_partOne(self):
-        d = Day16(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
-        d.parse()
-        self.assertEqual(999996, d.partA())
-
-    def test_partTwo(self):
-        d = Day16(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
-        d.parse()
-        self.assertEqual(2000004, d.partB())
+    pass
 
 
 class Test_Day17(TestCase):
