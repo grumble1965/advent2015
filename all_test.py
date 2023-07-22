@@ -327,16 +327,14 @@ class Test_Day16(TestCase):
 
 class Test_Day17(TestCase):
     def test_partOne(self):
-        d = Day17(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+        d = Day17(['20', '15', '10', '5', '5'])
         d.parse()
-        self.assertEqual(999996, d.partA())
+        self.assertEqual(4, d.partA(total_eggnog=25))
 
     def test_partTwo(self):
-        d = Day17(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+        d = Day17(['20', '15', '10', '5', '5'])
         d.parse()
-        self.assertEqual(2000004, d.partB())
+        self.assertEqual(3, d.partB(total_eggnog=25))
 
 
 class Test_Day18(TestCase):
