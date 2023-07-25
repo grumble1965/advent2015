@@ -360,17 +360,49 @@ class Test_Day18(TestCase):
 
 
 class Test_Day19(TestCase):
-    def test_partOne(self):
-        d = Day19(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+    def test_partOneA(self):
+        d = Day19(['e => H''',
+                   'e => O',
+                   'H => HO',
+                   'H => OH',
+                   'O => HH',
+                   '',
+                   'HOH'])
         d.parse()
-        self.assertEqual(999996, d.partA())
+        self.assertEqual(4, d.partA())
 
-    def test_partTwo(self):
-        d = Day19(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+    def test_partOneB(self):
+        d = Day19(['e => H''',
+                   'e => O',
+                   'H => HO',
+                   'H => OH',
+                   'O => HH',
+                   '',
+                   'HOHOHO'])
         d.parse()
-        self.assertEqual(2000004, d.partB())
+        self.assertEqual(7, d.partA())
+
+    def test_partTwoA(self):
+        d = Day19(['e => H''',
+                   'e => O',
+                   'H => HO',
+                   'H => OH',
+                   'O => HH',
+                   '',
+                   'HOH'])
+        d.parse()
+        self.assertEqual(3, d.partB())
+
+    def test_partTwoB(self):
+        d = Day19(['e => H''',
+                   'e => O',
+                   'H => HO',
+                   'H => OH',
+                   'O => HH',
+                   '',
+                   'HOHOHO'])
+        d.parse()
+        self.assertEqual(6, d.partB())
 
 
 class Test_Day20(TestCase):
