@@ -339,16 +339,24 @@ class Test_Day17(TestCase):
 
 class Test_Day18(TestCase):
     def test_partOne(self):
-        d = Day18(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+        d = Day18(['.#.#.#\n',
+                   '...##.\n',
+                   '#....#\n',
+                   '..#...\n',
+                   '#.#..#\n',
+                   '####..\n'])
         d.parse()
-        self.assertEqual(999996, d.partA())
+        self.assertEqual(4, d.partA(limit=4, output=True))
 
     def test_partTwo(self):
-        d = Day18(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+        d = Day18(['##.#.#\n',
+                   '...##.\n',
+                   '#....#\n',
+                   '..#...\n',
+                   '#.#..#\n',
+                   '####.#\n'])
         d.parse()
-        self.assertEqual(2000004, d.partB())
+        self.assertEqual(17, d.partB(limit=5, output=True))
 
 
 class Test_Day19(TestCase):
