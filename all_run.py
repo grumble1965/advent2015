@@ -19,6 +19,11 @@ from day17 import Day17
 from day18 import Day18
 from day19 import Day19
 from day20 import Day20
+from day21 import Day21
+from day22 import Day22
+from day23 import Day23
+from day24 import Day24
+from day25 import Day25
 
 
 def main():
@@ -42,6 +47,11 @@ def main():
     runner = Runner(Day18(File_to_String("day18-live.txt"))).run()
     runner = Runner(Day19(File_to_String("day19-live.txt"))).run()
     runner = Runner(Day20(File_to_String("day20-live.txt"))).run()
+    runner = Runner(Day21(File_to_String("day21-live.txt"))).run()
+    runner = Runner(Day22(File_to_String("day22-live.txt"))).run()
+    runner = Runner(Day23(File_to_String("day23-live.txt"))).run()
+    runner = Runner(Day24(File_to_String("day24-live.txt"))).run()
+    runner = Runner(Day25(File_to_String("day25-live.txt"))).run()
 
 
 if __name__ == '__main__':

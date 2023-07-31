@@ -19,6 +19,11 @@ from day17 import Day17
 from day18 import Day18
 from day19 import Day19
 from day20 import Day20
+from day21 import Day21
+from day22 import Day22
+from day23 import Day23
+from day24 import Day24
+from day25 import Day25
 
 
 class Test_Day01(TestCase):
@@ -414,6 +419,76 @@ class Test_Day20(TestCase):
 
     def test_partTwo(self):
         d = Day20(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day21(TestCase):
+    def test_partOne(self):
+        d = Day21(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day21(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day22(TestCase):
+    def test_partOne(self):
+        d = Day22(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day22(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day23(TestCase):
+    def test_partOne(self):
+        d = Day23(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day23(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day24(TestCase):
+    def test_partOne(self):
+        d = Day24(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day24(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(2000004, d.partB())
+
+
+class Test_Day25(TestCase):
+    def test_partOne(self):
+        d = Day25(['turn on 0,0 through 1,1',
+                   'toggle 0,0 through 999,999'])
+        d.parse()
+        self.assertEqual(999996, d.partA())
+
+    def test_partTwo(self):
+        d = Day25(['turn on 0,0 through 1,1',
                    'toggle 0,0 through 999,999'])
         d.parse()
         self.assertEqual(2000004, d.partB())

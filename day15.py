@@ -20,7 +20,7 @@ class Day15(Advent):
             flavor = int(fla.split()[1])
             texture = int(tex.split()[1])
             calories = int(cal.split()[1])
-            print(f"{name}: Capacity = {capacity} Durability = {durability} Flavor = {flavor} Texture = {texture} Calories = {calories}")
+            # print(f"{name}: Capacity = {capacity} Durability = {durability} Flavor = {flavor} Texture = {texture} Calories = {calories}")
             tt = (name, capacity, durability, flavor, texture, calories)
             self.cookies.append(tt)
 
