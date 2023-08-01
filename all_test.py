@@ -412,16 +412,29 @@ class Test_Day19(TestCase):
 
 class Test_Day20(TestCase):
     def test_partOne(self):
-        d = Day20(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+        # search for a house with at least 500 presents, 15 elves to deliver
+        d = Day20(['500'], 15)
         d.parse()
-        self.assertEqual(999996, d.partA())
+        d.partA()                   # ignore whether we found the hosue
+        self.assertEqual(10, d.get_house(1))
+        self.assertEqual(30, d.get_house(2))
+        self.assertEqual(40, d.get_house(3))
+        self.assertEqual(70, d.get_house(4))
+        self.assertEqual(60, d.get_house(5))
+        self.assertEqual(120, d.get_house(6))
+        self.assertEqual(80, d.get_house(7))
+        self.assertEqual(150, d.get_house(8))
+        self.assertEqual(130, d.get_house(9))
+        self.assertEqual(540, d.get_house(53))
 
     def test_partTwo(self):
-        d = Day20(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+        # search for a house with at least 500 presents, 60 elves to deliver
+        d = Day20(['500'], 60)
         d.parse()
-        self.assertEqual(2000004, d.partB())
+        d.partB()                   # ignore whether we found the hosue
+        self.assertEqual(11, d.get_house(1))
+        self.assertEqual(33, d.get_house(2))
+        self.assertEqual(53*11, d.get_house(53))
 
 
 class Test_Day21(TestCase):
