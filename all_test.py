@@ -438,17 +438,23 @@ class Test_Day20(TestCase):
 
 
 class Test_Day21(TestCase):
-    def test_partOne(self):
-        d = Day21(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+    def test_partOneA(self):
+        d = Day21(['Hit Points: 12\n',
+                   'Damage: 7\n',
+                   'Armor: 2\n'])
         d.parse()
-        self.assertEqual(999996, d.partA())
+        self.assertEqual(12, d.boss_hp)
+        self.assertEqual(7, d.boss_damage)
+        self.assertEqual(2, d.boss_armor)
 
-    def test_partTwo(self):
-        d = Day21(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+    def test_partOneB(self):
+        d = Day21(['Hit Points: 12\n',
+                   'Damage: 7\n',
+                   'Armor: 2\n'])
         d.parse()
-        self.assertEqual(2000004, d.partB())
+        player = (8, 5, 5)
+        boss = (12, 7, 2)
+        self.assertEqual("player", d.battle(player, boss))
 
 
 class Test_Day22(TestCase):
