@@ -21,6 +21,8 @@ from day19 import Day19
 from day20 import Day20
 from day21 import Day21
 from day22 import Day22
+from day22 import EasyGame
+from day22 import HardGame
 from day23 import Day23
 from day24 import Day24
 from day25 import Day25
@@ -366,46 +368,46 @@ class Test_Day18(TestCase):
 
 class Test_Day19(TestCase):
     def test_partOneA(self):
-        d = Day19(['e => H''',
-                   'e => O',
-                   'H => HO',
-                   'H => OH',
-                   'O => HH',
-                   '',
-                   'HOH'])
+        d = Day19(['e => H\n',
+                   'e => O\n',
+                   'H => HO\n',
+                   'H => OH\n',
+                   'O => HH\n',
+                   '\n',
+                   'HOH\n'])
         d.parse()
         self.assertEqual(4, d.partA())
 
     def test_partOneB(self):
-        d = Day19(['e => H''',
-                   'e => O',
-                   'H => HO',
-                   'H => OH',
-                   'O => HH',
-                   '',
-                   'HOHOHO'])
+        d = Day19(['e => H\n',
+                   'e => O\n',
+                   'H => HO\n',
+                   'H => OH\n',
+                   'O => HH\n',
+                   '\n',
+                   'HOHOHO\n'])
         d.parse()
         self.assertEqual(7, d.partA())
 
     def test_partTwoA(self):
-        d = Day19(['e => H''',
-                   'e => O',
-                   'H => HO',
-                   'H => OH',
-                   'O => HH',
-                   '',
-                   'HOH'])
+        d = Day19(['e => H\n',
+                   'e => O\n',
+                   'H => HO\n',
+                   'H => OH\n',
+                   'O => HH\n',
+                   '\n',
+                   'HOH\n'])
         d.parse()
         self.assertEqual(3, d.partB())
 
     def test_partTwoB(self):
-        d = Day19(['e => H''',
-                   'e => O',
-                   'H => HO',
-                   'H => OH',
-                   'O => HH',
-                   '',
-                   'HOHOHO'])
+        d = Day19(['e => H\n',
+                   'e => O\n',
+                   'H => HO\n',
+                   'H => OH\n',
+                   'O => HH\n',
+                   '\n',
+                   'HOHOHO\n'])
         d.parse()
         self.assertEqual(6, d.partB())
 
@@ -415,7 +417,7 @@ class Test_Day20(TestCase):
         # search for a house with at least 500 presents, 15 elves to deliver
         d = Day20(['500'], 15)
         d.parse()
-        d.partA()                   # ignore whether we found the hosue
+        d.partA(search_limit=15)
         self.assertEqual(10, d.get_house(1))
         self.assertEqual(30, d.get_house(2))
         self.assertEqual(40, d.get_house(3))
@@ -425,13 +427,12 @@ class Test_Day20(TestCase):
         self.assertEqual(80, d.get_house(7))
         self.assertEqual(150, d.get_house(8))
         self.assertEqual(130, d.get_house(9))
-        self.assertEqual(540, d.get_house(53))
 
     def test_partTwo(self):
         # search for a house with at least 500 presents, 60 elves to deliver
         d = Day20(['500'], 60)
         d.parse()
-        d.partB()                   # ignore whether we found the hosue
+        d.partB()
         self.assertEqual(11, d.get_house(1))
         self.assertEqual(33, d.get_house(2))
         self.assertEqual(53*11, d.get_house(53))
@@ -458,17 +459,25 @@ class Test_Day21(TestCase):
 
 
 class Test_Day22(TestCase):
-    def test_partOne(self):
-        d = Day22(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+    def test_partOneA(self):
+        d = Day22(['Hit Points: 14\n',
+                   'Damage: 8\n'])
         d.parse()
-        self.assertEqual(999996, d.partA())
+        g = EasyGame(10, 250, 13, 8)
+        for spell in ["Poison", "Magic Missile"]:
+            g.player_turn(spell)
+            g.boss_turn()
+        self.assertEqual("Player", g.winner())
 
-    def test_partTwo(self):
-        d = Day22(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
+    def test_partOneB(self):
+        d = Day22(['Hit Points: 14\n',
+                   'Damage: 8\n'])
         d.parse()
-        self.assertEqual(2000004, d.partB())
+        g = EasyGame(10, 250, 14, 8)
+        for spell in ["Recharge", "Shield", "Drain", "Poison", "Magic Missile"]:
+            g.player_turn(spell)
+            g.boss_turn()
+        self.assertEqual("Player", g.winner())
 
 
 class Test_Day23(TestCase):

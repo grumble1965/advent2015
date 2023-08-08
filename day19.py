@@ -1,10 +1,31 @@
+""" Day 19 solution """
+
 from advent import Advent, Runner, File_to_String
-from collections import deque
-import sys
+
+
+class PriorityQueue:
+    def __init__(self):
+        self.items = []
+
+    def append(self, item):
+        self.items.append(item)
+        self.items.sort(key=lambda tt: len(tt[0]))
+
+    def pop(self):
+        return self.items.pop(0)
+
+    def empty(self):
+        return len(self.items) == 0
+
+    def length(self):
+        return len(self.items)
 
 
 class Day19(Advent):
+    """ The class for Day 19 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "19"
         self.lines = input_text
         self.rules = []
@@ -19,8 +40,7 @@ class Day19(Advent):
                 words = tmp.split('=>')
                 lhs = words[0].strip()
                 rhs = words[1].strip()
-                tt = (lhs, rhs)
-                self.rules.append(tt)
+                self.rules.append((lhs, rhs))
 
     def partA(self):
         molecules = set()
@@ -28,60 +48,75 @@ class Day19(Advent):
             # print(f"rule {lhs} -> {rhs}")
             idx = 0
             while True:
-                next = self.start.find(lhs, idx)
-                if next == -1:
+                next_idx = self.start.find(lhs, idx)
+                if next_idx == -1:
                     break
-                molecules.add(self.start[:next] +
+                molecules.add(self.start[:next_idx] +
                               rhs +
-                              self.start[next+len(lhs):])
+                              self.start[next_idx+len(lhs):])
                 # print(f"{start[:next]} *{rhs}* {start[next+len(lhs):]}")
-                idx = next+1
+                idx = next_idx + 1
         print(f"Yields {len(molecules)} unique molecules")
         return len(molecules)
 
     def partB(self):
-        q = deque()
-        q.append((self.start, 0))
+        # sort the rules
+        self.rules.sort(key=lambda a: len(a[1]) - len(a[0]), reverse=True)
+
+        queue = PriorityQueue()
+        queue.append((self.start, 0))
 
         solutions = []
-        seen = {}
-        for ll in range(len(self.start) * 2):
-            seen[ll] = set()
+        seen = set()
         iteration_ctr = 0
 
-        while q:
-            if iteration_ctr % 10000 == 0:
-                sum_seen = sum([len(seen[ll]) for ll in seen])
-                # print(f"{iteration_ctr}: Queue = {len(q)}  Seen = {sum_seen}")
+        while not queue.empty():
+            if iteration_ctr % 100 == 0:
+                sum_seen = len(seen)
+                # print(f"{iteration_ctr}: Queue = {queue.length()}  Seen = {sum_seen}")
             iteration_ctr += 1
 
-            seed, steps = q.pop()
-            if seed == 'e':
+            molecule, steps = queue.pop()
+            if molecule == 'e':
                 # print(f"solution!  {steps}")
                 solutions.append(steps)
                 if len(solutions) > 3:
                     break
             else:
-                next_steps = set()
                 for lhs, rhs in self.rules:
-                    new_str, d_steps = seed, 0
-                    while rhs in new_str:
-                        new_str = new_str.replace(rhs, lhs, 1)
-                        d_steps += 1
-                    if new_str not in seen[len(new_str)]:
-                        next_steps.add((new_str, steps+d_steps))
+                    occurances = molecule.count(rhs)
+                    if lhs == 'e' and rhs == molecule:
+                        # print(" last step")
+                        queue.append(('e', steps+1))
+                    elif lhs != 'e' and occurances > 0:
+                        # print(f" {occurances} match")
+                        locations = []
+                        start_location = 0
+                        while len(locations) < occurances:
+                            locations.append(
+                                molecule.find(rhs, start_location))
+                            start_location += len(rhs)
+                        for start_location in locations:
+                            new_str = molecule[:start_location] + \
+                                lhs + molecule[start_location+len(rhs):]
+                            # print(f"  At {start_location}, {molecule} -> {new_str}")
+                            queue.append((new_str, steps+1))
+                    else:
+                        # print(" no match")
+                        pass
 
-                for ns, st in next_steps:
-                    tt = (ns, st)
-                    q.append(tt)
+                seen.add(molecule)
 
-                seen[len(seed)].add(seed)
+        if len(solutions) > 0:
+            print(f"Best solution is {min(solutions)} steps")
+            return min(solutions)
 
-        print(f"Best solution:  {min(solutions)}")
-        return min(solutions)
+        print("No solutions found!")
+        return None
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day19(File_to_String("day19-live.txt"))
     runner = Runner(aoc1)
     runner.run()
