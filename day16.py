@@ -1,13 +1,18 @@
+""" Solution for Day 16 """
+
 from advent import Advent, Runner, file_to_string
-import sys
 
 
 class Day16(Advent):
+    """ class for Day 16 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "16"
         self.lines = input_text
-        self.inventory = {'children': {}, 'cats': {}, 'samoyeds': {}, 'pomeranians': {}, 'akitas': {},
-                          'vizslas': {}, 'goldfish': {}, 'trees': {}, 'cars': {}, 'perfumes': {}}
+        self.inventory = {'children': {}, 'cats': {}, 'samoyeds': {}, 'pomeranians': {},
+                          'akitas': {}, 'vizslas': {}, 'goldfish': {}, 'trees': {},
+                          'cars': {}, 'perfumes': {}}
 
     def parse(self):
         for line in self.lines:
@@ -24,20 +29,20 @@ class Day16(Advent):
             self.inventory[key3][name] = int(value3)
 
     def part_one(self):
-        scene = {'children': 3, 'cats': 7, 'samoyeds': 2, 'pomeranians': 3, 'akitas': 0, 'vizslas': 0, 'goldfish': 5,
-                 'trees': 3, 'cars': 2, 'perfumes': 1}
+        scene = {'children': 3, 'cats': 7, 'samoyeds': 2, 'pomeranians': 3, 'akitas': 0,
+                 'vizslas': 0, 'goldfish': 5, 'trees': 3, 'cars': 2, 'perfumes': 1}
 
         all_sues = set()
         for k, v_dict in self.inventory.items():
             all_sues.update(v_dict.keys())
 
-        for k, v in scene.items():
+        for k, count in scene.items():
             to_remove = []
             for sue in all_sues:
-                if sue in self.inventory[k] and self.inventory[k][sue] != v:
+                if sue in self.inventory[k] and self.inventory[k][sue] != count:
                     to_remove.append(sue)
-            for x in to_remove:
-                all_sues.remove(x)
+            for sue in to_remove:
+                all_sues.remove(sue)
         print(f"Remainining Sues: {all_sues}")
         return all_sues
 
@@ -51,28 +56,28 @@ class Day16(Advent):
         for k, v_dict in self.inventory.items():
             all_sues.update(v_dict.keys())
 
-        for k, v in scene_equals.items():
+        for k, count in scene_equals.items():
             to_remove = []
             for sue in all_sues:
-                if sue in self.inventory[k] and self.inventory[k][sue] != v:
+                if sue in self.inventory[k] and self.inventory[k][sue] != count:
                     to_remove.append(sue)
-            for x in to_remove:
-                all_sues.remove(x)
+            for sue in to_remove:
+                all_sues.remove(sue)
         # print(f"Scene Equals Sues: {all_sues}")
 
-        for k, v in scene_greater.items():
+        for k, count in scene_greater.items():
             to_remove = []
             for sue in all_sues:
-                if sue in self.inventory[k] and self.inventory[k][sue] <= v:
+                if sue in self.inventory[k] and self.inventory[k][sue] <= count:
                     to_remove.append(sue)
             for wrong_sue in to_remove:
                 all_sues.remove(wrong_sue)
         # print(f"Scene Greater Sues: {all_sues}")
 
-        for k, v in scene_less.items():
+        for k, count in scene_less.items():
             to_remove = []
             for sue in all_sues:
-                if sue in self.inventory[k] and self.inventory[k][sue] >= v:
+                if sue in self.inventory[k] and self.inventory[k][sue] >= count:
                     to_remove.append(sue)
             for wrong_sue in to_remove:
                 all_sues.remove(wrong_sue)
@@ -82,6 +87,7 @@ class Day16(Advent):
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day16(file_to_string("day16-live.txt"))
     runner = Runner(aoc1)
     runner.run()

@@ -1,10 +1,14 @@
-from advent import Advent, Runner, file_to_string
+""" Solution for Day 21 """
+
 from itertools import permutations, product
-import sys
+from advent import Advent, Runner, file_to_string
 
 
 class Day21(Advent):
+    """ class for Day 21 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "21"
         self.lines = input_text
         self.weapons = [('Dagger', 8, 4, 0),
@@ -45,6 +49,7 @@ class Day21(Advent):
                 print(f"Couldn't parse {words}")
 
     def battle(self, player, boss):
+        """ run a battle """
         p_hp, p_damage, p_armor = player
         b_hp, b_damage, b_armor = boss
 
@@ -72,15 +77,15 @@ class Day21(Advent):
                               permutations(self.rings, 2)):
             total_configs += 1
             w_tmp, a_tmp, (r1_tmp, r2_tmp) = config
-            ww, aa, rr1, rr2 = w_tmp[0], a_tmp[0], r1_tmp, r2_tmp
+            weap, armor, rr1, rr2 = w_tmp[0], a_tmp[0], r1_tmp, r2_tmp
             # print(f"{ww} {aa} {rr1}, {rr2}")
-            player = (100, ww[2]+aa[2]+rr1[2]+rr2[2],
-                      ww[3]+aa[3]+rr1[3]+rr2[3])
+            player = (100, weap[2]+armor[2]+rr1[2]+rr2[2],
+                      weap[3]+armor[3]+rr1[3]+rr2[3])
             # print(f"{player}")
             boss = (self.boss_hp, self.boss_damage, self.boss_armor)
             if self.battle(player, boss) == 'player':
                 winning_configs.add(config)
-                winning_costs.append(ww[1]+aa[1]+rr1[1]+rr2[1])
+                winning_costs.append(weap[1]+armor[1]+rr1[1]+rr2[1])
 
         # print(f"There are {total_configs} configurations and {len(winning_configs)} win")
         print(f"Lowest cost winning configuration is {min(winning_costs)}")
@@ -96,13 +101,13 @@ class Day21(Advent):
                               permutations(self.rings, 2)):
             total_configs += 1
             w_tmp, a_tmp, (r1_tmp, r2_tmp) = config
-            ww, aa, rr1, rr2 = w_tmp[0], a_tmp[0], r1_tmp, r2_tmp
+            weapon, armor, rr1, rr2 = w_tmp[0], a_tmp[0], r1_tmp, r2_tmp
             # print(f"{ww} {aa} {rr1}, {rr2}")
-            player = (100, ww[2]+aa[2]+rr1[2]+rr2[2],
-                      ww[3]+aa[3]+rr1[3]+rr2[3])
+            player = (100, weapon[2]+armor[2]+rr1[2]+rr2[2],
+                      weapon[3]+armor[3]+rr1[3]+rr2[3])
             # print(f"{player}")
             boss = (self.boss_hp, self.boss_damage, self.boss_armor)
-            cost = ww[1]+aa[1]+rr1[1]+rr2[1]
+            cost = weapon[1]+armor[1]+rr1[1]+rr2[1]
             if self.battle(player, boss) == 'player':
                 winning_configs.add(config)
                 winning_costs.append(cost)
@@ -116,6 +121,7 @@ class Day21(Advent):
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day21(file_to_string("day21-live.txt"))
     runner = Runner(aoc1)
     runner.run()

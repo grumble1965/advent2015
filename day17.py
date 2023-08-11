@@ -1,10 +1,14 @@
-from advent import Advent, Runner, file_to_string
+""" Solution for Day 17 """
+
 from itertools import combinations
-import sys
+from advent import Advent, Runner, file_to_string
 
 
 class Day17(Advent):
+    """ class for Day 17 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "17"
         self.lines = input_text
         self.containers = []
@@ -19,15 +23,15 @@ class Day17(Advent):
         for num_containers in range(len(self.containers)):
             iter_list = combinations(
                 range(len(self.containers)), num_containers+1)
-            for pp in iter_list:
-                sum = 0
-                for idx in pp:
-                    sum += self.containers[idx]
-                if sum == total_eggnog:
-                    cc = [self.containers[jdx]
-                          for jdx in range(len(self.containers)) if jdx in pp]
-                    # print(cc, sum)
-                    self.working_perms.add(pp)
+            for comb in iter_list:
+                sum_ = 0
+                for idx in comb:
+                    sum_ += self.containers[idx]
+                if sum_ == total_eggnog:
+                    # cc = [self.containers[jdx]
+                    #       for jdx in range(len(self.containers)) if jdx in comb]
+                    # print(cc, sum_)
+                    self.working_perms.add(comb)
         print(f"total working permutations = {len(self.working_perms)}")
         return len(self.working_perms)
 
@@ -35,12 +39,12 @@ class Day17(Advent):
         if len(self.working_perms) == 0:
             self.part_one(total_eggnog=total_eggnog)
         len_count = {}
-        for p in self.working_perms:
-            ll = len(p)
-            if ll in len_count:
-                len_count[ll] += 1
+        for perm in self.working_perms:
+            perm_len = len(perm)
+            if perm_len in len_count:
+                len_count[perm_len] += 1
             else:
-                len_count[ll] = 1
+                len_count[perm_len] = 1
         min_perm = min(list(len_count.keys()))
         print(
             f"smallest permutation is length {min_perm} with {len_count[min_perm]} possible")
@@ -48,6 +52,7 @@ class Day17(Advent):
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day17(file_to_string("day17-live.txt"))
     runner = Runner(aoc1)
     runner.run()

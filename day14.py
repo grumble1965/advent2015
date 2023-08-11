@@ -1,8 +1,11 @@
+""" Solution for Day 14 """
+
 from advent import Advent, Runner, file_to_string
-import sys
 
 
 class Reindeer:
+    """ Class to simulate a single reindeer """
+
     def __init__(self, name, speed, fly_time, rest_time):
         self._name = name
         self._speed = speed
@@ -18,6 +21,7 @@ class Reindeer:
         return self._name
 
     def start(self):
+        """ start a new reindeer """
         self._state = 'fly'
         self._timer = self._fly_time
         self._points = 0
@@ -25,6 +29,7 @@ class Reindeer:
         self.distance = 0
 
     def tick(self):
+        """ next time tick for this reindeer """
         if self._state == 'fly':
             self.distance += self.velocity
         self._timer -= 1
@@ -41,14 +46,19 @@ class Reindeer:
                 self._timer = self._fly_time
 
     def award_point(self):
+        """ award a point for this reindeer """
         self._points += 1
 
     def get_points(self):
+        """ return the current points of this reindeer """
         return self._points
 
 
 class Day14(Advent):
+    """ class for Day 14 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "14"
         self.lines = input_text
         self.race = []
@@ -62,44 +72,49 @@ class Day14(Advent):
             reindeer = Reindeer(name, speed, fly_time, rest_time)
             self.race.append(reindeer)
 
-    def runRaceOld(self, timeLimit):
-        for r in self.race:
-            r.start()
+    def run_race_old(self, time_limit):
+        """ run a race the old way """
+        for reindeer in self.race:
+            reindeer.start()
 
-        for seconds in range(timeLimit):
-            for r in self.race:
-                r.tick()
-        maxDistance = max([r.distance for r in self.race])
-        return maxDistance
+        for seconds in range(time_limit):
+            _ = seconds
+            for reindeer in self.race:
+                reindeer.tick()
+        max_distance = max([r.distance for r in self.race])
+        return max_distance
 
     def part_one(self):
-        winner = self.runRaceOld(2504)
+        winner = self.run_race_old(2504)
         print(f"Final: Winner has travelled {winner}")
         return winner
 
-    def runRaceNew(self, timeLimit):
-        for r in self.race:
-            r.start()
+    def run_race_new(self, time_limit):
+        """ run a race the new way """
+        for reindeer in self.race:
+            reindeer.start()
 
-        for seconds in range(timeLimit):
-            for r in self.race:
-                r.tick()
+        for seconds in range(time_limit):
+            _ = seconds
+            for reindeer in self.race:
+                reindeer.tick()
 
             max_flown = max([r.distance for r in self.race])
-            for r in self.race:
-                if r.distance == max_flown:
-                    r.award_point()
+            for reindeer in self.race:
+                if reindeer.distance == max_flown:
+                    reindeer.award_point()
 
-        maxPoints = max([r.get_points() for r in self.race])
-        return maxPoints
+        max_points = max([r.get_points() for r in self.race])
+        return max_points
 
     def part_two(self):
-        winner = self.runRaceNew(2504)
+        winner = self.run_race_new(2504)
         print(f"Final: Winner has {winner} points")
         return winner
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day14(file_to_string("day14-live.txt"))
     runner = Runner(aoc1)
     runner.run()

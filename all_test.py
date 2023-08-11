@@ -359,7 +359,7 @@ class Day14Tests(unittest.TestCase):
                       'Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.']
         day = Day14(test_input)
         day.parse()
-        self.assertEqual(1120, day.runRaceOld(1000))
+        self.assertEqual(1120, day.run_race_old(1000))
 
     def test_part_two(self):
         """ part two """
@@ -367,7 +367,7 @@ class Day14Tests(unittest.TestCase):
                       'Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.']
         day = Day14(test_input)
         day.parse()
-        self.assertEqual(689, day.runRaceNew(1000))
+        self.assertEqual(689, day.run_race_new(1000))
 
 
 class Day15Tests(unittest.TestCase):
