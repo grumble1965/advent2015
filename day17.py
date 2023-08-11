@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 from itertools import combinations
 import sys
 
@@ -15,7 +15,7 @@ class Day17(Advent):
             tmp = line.strip()
             self.containers.append(int(tmp))
 
-    def partA(self, total_eggnog=150):
+    def part_one(self, total_eggnog=150):
         for num_containers in range(len(self.containers)):
             iter_list = combinations(
                 range(len(self.containers)), num_containers+1)
@@ -31,9 +31,9 @@ class Day17(Advent):
         print(f"total working permutations = {len(self.working_perms)}")
         return len(self.working_perms)
 
-    def partB(self, total_eggnog=150):
+    def part_two(self, total_eggnog=150):
         if len(self.working_perms) == 0:
-            self.partA(total_eggnog=total_eggnog)
+            self.part_one(total_eggnog=total_eggnog)
         len_count = {}
         for p in self.working_perms:
             ll = len(p)
@@ -48,7 +48,7 @@ class Day17(Advent):
 
 
 def main():
-    aoc1 = Day17(File_to_String("day17-live.txt"))
+    aoc1 = Day17(file_to_string("day17-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

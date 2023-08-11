@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 from graph import Graph
 from itertools import permutations
 import sys
@@ -23,7 +23,7 @@ class Day09(Advent):
                 self.g.add_node(node2)
             self.g.add_edge(node1, node2, distance, bidirectional=True)
 
-    def partA(self):
+    def part_one(self):
         # compute all paths
         shortest_distance, shortest_path = 999999, None
         for path in permutations(self.g.nodes()):
@@ -36,7 +36,7 @@ class Day09(Advent):
         print(f"{shortest_path} = {shortest_distance}")
         return shortest_distance
 
-    def partB(self):
+    def part_two(self):
         # compute all paths
         longest_distance, longest_path = -1, None
         for path in permutations(self.g.nodes()):
@@ -51,7 +51,7 @@ class Day09(Advent):
 
 
 def main():
-    aoc1 = Day09(File_to_String("day09-live.txt"))
+    aoc1 = Day09(file_to_string("day09-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

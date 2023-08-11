@@ -1,23 +1,29 @@
 """ Day 19 solution """
 
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 
 
 class PriorityQueue:
+    """ A queue that tries shorter molecules before longer molecules """
+
     def __init__(self):
         self.items = []
 
     def append(self, item):
+        """ add a new molecule into the queue """
         self.items.append(item)
         self.items.sort(key=lambda tt: len(tt[0]))
 
     def pop(self):
+        """ return the next (and shortest) molecule to be tested """
         return self.items.pop(0)
 
     def empty(self):
+        """ return true if all molecules have been tested """
         return len(self.items) == 0
 
     def length(self):
+        """ how many molecules still need to be checked? """
         return len(self.items)
 
 
@@ -42,7 +48,7 @@ class Day19(Advent):
                 rhs = words[1].strip()
                 self.rules.append((lhs, rhs))
 
-    def partA(self):
+    def part_one(self):
         molecules = set()
         for lhs, rhs in self.rules:
             # print(f"rule {lhs} -> {rhs}")
@@ -59,7 +65,7 @@ class Day19(Advent):
         print(f"Yields {len(molecules)} unique molecules")
         return len(molecules)
 
-    def partB(self):
+    def part_two(self):
         # sort the rules
         self.rules.sort(key=lambda a: len(a[1]) - len(a[0]), reverse=True)
 
@@ -71,9 +77,9 @@ class Day19(Advent):
         iteration_ctr = 0
 
         while not queue.empty():
-            if iteration_ctr % 100 == 0:
-                sum_seen = len(seen)
-                # print(f"{iteration_ctr}: Queue = {queue.length()}  Seen = {sum_seen}")
+            # if iteration_ctr % 100 == 0:
+            #     sum_seen = len(seen)
+            #     print(f"{iteration_ctr}: Queue = {queue.length()}  Seen = {sum_seen}")
             iteration_ctr += 1
 
             molecule, steps = queue.pop()
@@ -117,7 +123,7 @@ class Day19(Advent):
 
 def main():
     """ stub for main() """
-    aoc1 = Day19(File_to_String("day19-live.txt"))
+    aoc1 = Day19(file_to_string("day19-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

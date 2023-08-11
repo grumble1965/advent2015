@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 from itertools import permutations
 import sys
 
@@ -47,12 +47,12 @@ class Day13(Advent):
                 best_permutation = combo
         return (best_permutation, best_score)
 
-    def partA(self):
+    def part_one(self):
         best_permutation, best_score = self.findBestPermutation()
         print(f"best combo = {best_permutation} with happiness = {best_score}")
         return best_score
 
-    def partB(self):
+    def part_two(self):
         for f in self.family:
             self.costs[(f, 'me')] = 0
             self.costs[('me', f)] = 0
@@ -64,7 +64,7 @@ class Day13(Advent):
 
 
 def main():
-    aoc1 = Day13(File_to_String("day13-live.txt"))
+    aoc1 = Day13(file_to_string("day13-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

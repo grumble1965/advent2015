@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 from itertools import product
 import sys
 
@@ -42,7 +42,7 @@ class Day15(Advent):
         # print(f"{quants} -> {score}")
         return score
 
-    def partA(self):
+    def part_one(self):
         best_score = None
         best_recipe = None
         for (a, b, c) in product(range(101), range(101), range(101)):
@@ -77,7 +77,7 @@ class Day15(Advent):
         # print(f"{quants} -> {score}")
         return score
 
-    def partB(self):
+    def part_two(self):
         best_score = None
         best_recipe = None
         for (a, b, c) in product(range(101), range(101), range(101)):
@@ -98,7 +98,7 @@ class Day15(Advent):
 
 
 def main():
-    aoc1 = Day15(File_to_String("day15-live.txt"))
+    aoc1 = Day15(file_to_string("day15-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

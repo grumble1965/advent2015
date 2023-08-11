@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 import hashlib
 
@@ -37,7 +37,7 @@ class Day05(Advent):
 
         return rule1 and rule2
 
-    def partA(self):
+    def part_one(self):
         nice = 0
         for tmp in self.lines:
             if self.check_nice_oldway(tmp):
@@ -46,7 +46,7 @@ class Day05(Advent):
         print(f"Nice strings under old rules = {nice}")
         return nice
 
-    def partB(self):
+    def part_two(self):
         nice = 0
         for tmp in self.lines:
             if self.check_nice_newway(tmp):
@@ -57,7 +57,7 @@ class Day05(Advent):
 
 
 def main():
-    aoc1 = Day05(File_to_String("day05-live.txt"))
+    aoc1 = Day05(file_to_string("day05-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

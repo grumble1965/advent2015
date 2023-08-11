@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -10,7 +10,7 @@ class Day02(Advent):
     def parse(self):
         pass
 
-    def partA(self):
+    def part_one(self):
         total_area = 0
         for tmp in self.lines:
             l_str, w_str, h_str = tmp.split('x')
@@ -23,7 +23,7 @@ class Day02(Advent):
         print(f"Total Area = {total_area}")
         return total_area
 
-    def partB(self):
+    def part_two(self):
         total_length = 0
         for tmp in self.lines:
             l_str, w_str, h_str = tmp.split('x')
@@ -41,7 +41,7 @@ class Day02(Advent):
 
 
 def main():
-    aoc1 = Day02(File_to_String("day02-live.txt"))
+    aoc1 = Day02(file_to_string("day02-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import numpy as np
 import sys
 
@@ -71,7 +71,7 @@ class Day06(Advent):
         else:
             print(f"Unknown command {command}")
 
-    def partA(self):
+    def part_one(self):
         self.lights = np.full((1000, 1000), False, dtype=bool)
         for c in self.commands:
             cmd, x0, y0, xn, yn = c
@@ -80,7 +80,7 @@ class Day06(Advent):
         print(f"Total lights on: {on}")
         return on
 
-    def partB(self):
+    def part_two(self):
         self.lights = np.zeros((1000, 1000), dtype=np.int16)
         for c in self.commands:
             cmd, x0, y0, xn, yn = c
@@ -91,7 +91,7 @@ class Day06(Advent):
 
 
 def main():
-    aoc1 = Day06(File_to_String("day06-live.txt"))
+    aoc1 = Day06(file_to_string("day06-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

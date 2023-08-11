@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import numpy as np
 import sys
 
@@ -78,7 +78,7 @@ class Day18(Advent):
                     cnt += 1
         return cnt
 
-    def partA(self, limit=100, output=False):
+    def part_one(self, limit=100, output=False):
         board = np.array(self.initial_state)
         for ctr in range(limit):
             board = self.animate_step(board, output=output)
@@ -89,7 +89,7 @@ class Day18(Advent):
         print(f"After {limit} steps {total} lights are on")
         return total
 
-    def partB(self, limit=100, output=False):
+    def part_two(self, limit=100, output=False):
         board = np.array(self.initial_state)
         board[0, 0] = '#'
         board[0, board.shape[1]-1] = '#'
@@ -108,7 +108,7 @@ class Day18(Advent):
 
 
 def main():
-    aoc1 = Day18(File_to_String("day18-live.txt"))
+    aoc1 = Day18(file_to_string("day18-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

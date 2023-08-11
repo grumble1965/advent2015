@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 from itertools import groupby
 import sys
 
@@ -21,7 +21,7 @@ class Day10(Advent):
             result += str(len(list(g))) + k
         return result
 
-    def partA(self):
+    def part_one(self):
         ll = self.line
         iters = 40
         for i in range(iters):
@@ -30,7 +30,7 @@ class Day10(Advent):
         print(f"After {iters} iterations, length = {len(ll)}")
         return len(ll)
 
-    def partB(self):
+    def part_two(self):
         ll = self.line
         iters = 50
         for i in range(iters):
@@ -41,7 +41,7 @@ class Day10(Advent):
 
 
 def main():
-    aoc1 = Day10(File_to_String("day10-live.txt"))
+    aoc1 = Day10(file_to_string("day10-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

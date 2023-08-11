@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -10,7 +10,7 @@ class Day08(Advent):
     def parse(self):
         pass
 
-    def partA(self):
+    def part_one(self):
         total_code, total_memory = 0, 0
 
         for line in self.lines:
@@ -55,7 +55,7 @@ class Day08(Advent):
             f"Total code = {total_code}  Total memory = {total_memory} : difference = {total_code-total_memory}")
         return total_code - total_memory
 
-    def partB(self):
+    def part_two(self):
         total_original, total_encoded = 0, 0
         this_original, this_encoded = 0, 0
 
@@ -88,7 +88,7 @@ class Day08(Advent):
 
 
 def main():
-    aoc1 = Day08(File_to_String("day08-live.txt"))
+    aoc1 = Day08(file_to_string("day08-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

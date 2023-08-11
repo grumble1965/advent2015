@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 import hashlib
 
@@ -21,13 +21,13 @@ class Day04(Advent):
             number += 1
         return number
 
-    def partA(self):
+    def part_one(self):
         key = self.line.strip()
         number = self.hash_loop(key, '00000')
         print(f"For key {key}, the lowest positive integer is {number}")
         return number
 
-    def partB(self):
+    def part_two(self):
         key = self.line.strip()
         number = self.hash_loop(key, '000000')
         print(f"For key {key}, the lowest positive integer is {number}")
@@ -35,7 +35,7 @@ class Day04(Advent):
 
 
 def main():
-    aoc1 = Day04(File_to_String("day04-live.txt"))
+    aoc1 = Day04(file_to_string("day04-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

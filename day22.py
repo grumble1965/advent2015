@@ -1,10 +1,12 @@
-from advent import Advent, Runner, File_to_String
+""" Day 22 Solution """
+
 from collections import deque
 import copy
-import sys
+from advent import Advent, Runner, file_to_string
 
 
 class EasyGame:
+    """ The easy game as described in part one """
     _spells = {'Magic Missile': {'mana': 53},
                'Drain': {'mana': 73},
                'Shield': {'mana': 113, 'turns': 5},
@@ -27,28 +29,32 @@ class EasyGame:
         self.history = []
 
     def game_over(self):
+        """ Is the game over? """
         return self._turn < 0 or self._turn > 1
 
     def winner(self):
+        """ Who won the game? """
         return self._winner
 
     def can_cast(self):
+        """ What spells can the player cast? """
         can_afford = [spell for spell, spell_dict in self._spells.items(
         ) if self._player_mana >= spell_dict['mana']]
         return [spell for spell in can_afford if self._timers[spell] == 0]
 
     def whose_turn(self):
-        tt = None
+        """ Whose turn is it? """
+        turn = None
         if self._turn == 0:
-            tt = 'Player'
+            turn = 'Player'
         elif self._turn == 1:
-            tt = 'Boss'
-        return tt
+            turn = 'Boss'
+        return turn
 
     def _print_state(self):
         if self._debug:
-            print(
-                f"- Player has {self._player_hp} hit points, {self._player_armor} armor, {self._player_mana} mana")
+            print(f"- Player has {self._player_hp} hit points, ", end='')
+            print(f"{self._player_armor} armor, {self._player_mana} mana")
             print(f"- Boss has {self._boss_hp} hit points")
 
     def _handle_effects(self):
@@ -83,21 +89,22 @@ class EasyGame:
             self._turn = -1
             self._winner = 'Boss'
             if self._debug:
-                print(f"The player is dead")
+                print("The player is dead")
         elif self._boss_hp < 1:
             self._turn = -1
             self._winner = 'Player'
             if self._debug:
-                print(f"The Boss is dead")
+                print("The Boss is dead")
 
     def _handle_mana(self):
         if self._player_mana < self._spells['Magic Missile']['mana']:
             self._turn = -1
             self._winner = 'Boss'
             if self._debug:
-                print(f"Insufficient player mana")
+                print("Insufficient player mana")
 
     def player_turn(self, spell):
+        """ handle the player's turn """
         if self.whose_turn() != 'Player':
             print("Not the player's turn!")
             return
@@ -171,6 +178,7 @@ class EasyGame:
             print()
 
     def boss_turn(self):
+        """ handle the boss's turn """
         if self.whose_turn() != 'Boss':
             print("Not the Boss's turn!")
             return
@@ -198,6 +206,8 @@ class EasyGame:
 
 
 class HardGame:
+    """ The hard game as described in part two """
+
     spells = {'Magic Missile': {'mana': 53},
               'Drain': {'mana': 73},
               'Shield': {'mana': 113, 'turns': 5},
@@ -221,12 +231,15 @@ class HardGame:
         self._hard_mode = hard_mode
 
     def game_over(self):
+        """ Is the game over? """
         return self._turn not in [0, 1]
 
     def winner(self):
+        """ Who won the game? """
         return self._winner
 
     def can_cast(self):
+        """ What spells can the player cast on this turn? """
         # if Recharge is running, use the current mana plus the recharge amount
         mana = self._player_mana
         if self._timers['Recharge'] > 0:
@@ -238,17 +251,18 @@ class HardGame:
         return [spell for spell in can_afford if self._timers[spell] in [0, 1]]
 
     def whose_turn(self):
-        tt = None
+        """ Whose turn is it? """
+        turn = None
         if self._turn == 0:
-            tt = 'Player'
+            turn = 'Player'
         elif self._turn == 1:
-            tt = 'Boss'
-        return tt
+            turn = 'Boss'
+        return turn
 
     def _print_state(self):
         if self._debug:
-            print(
-                f"- Player has {self._player_hp} hit points, {self._player_armor} armor, {self._player_mana} mana")
+            print(f"- Player has {self._player_hp} hit points, ", end='')
+            print(f"{self._player_armor} armor, {self._player_mana} mana")
             print(f"- Boss has {self._boss_hp} hit points")
 
     def _handle_effects(self):
@@ -283,14 +297,15 @@ class HardGame:
             self._turn = -1
             self._winner = 'Boss'
             if self._debug:
-                print(f"The player is dead")
+                print("The player is dead")
         elif self._boss_hp < 1:
             self._turn = -1
             self._winner = 'Player'
             if self._debug:
-                print(f"The Boss is dead")
+                print("The Boss is dead")
 
     def player_turn(self, spell):
+        """ Handle the player's turn """
         if self.whose_turn() != 'Player':
             print("Not the player's turn!")
             return
@@ -356,6 +371,7 @@ class HardGame:
             print()
 
     def boss_turn(self):
+        """ Handle the boss's turn """
         if self.whose_turn() != 'Boss':
             print("Not the Boss's turn!")
             return
@@ -387,7 +403,10 @@ class HardGame:
 
 
 class Day22(Advent):
+    """ The class for Day 22 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "22"
         self.lines = input_text
         self.boss_hp = None
@@ -405,49 +424,52 @@ class Day22(Advent):
             else:
                 print(f"Couldn't parse {words}")
 
-    def findLowestManaWin(self, game, debug=False):
-        q = deque()
-        q.append(game)
+    def find_lowest_mana_win(self, game, debug=False):
+        """ Run all possible player moves and find the lowest amount of mana needed to win """
+        queue = deque()
+        queue.append(game)
 
         lowest_mana, lowest_history = None, None
+        _ = lowest_history
         win_ctr, loss_ctr = 0, 0
         q_ctr = 0
-        while q:
-            g = q.pop()
+        while queue:
+            game = queue.pop()
             if debug and q_ctr % 100000 == 0:
                 print(
-                    f"After {q_ctr} queue steps, queue has length {len(q)}, {win_ctr} wins, {loss_ctr} losses")
+                    f"After {q_ctr} queue steps, queue has length {len(queue)}, ", end='')
+                print(f"{win_ctr} wins, {loss_ctr} losses")
             q_ctr += 1
 
-            if g.winner() is not None or g.game_over():
+            if game.winner() is not None or game.game_over():
                 print("WTF^2")
                 break
 
-            if g.whose_turn() == 'Boss':
-                g.boss_turn()
+            if game.whose_turn() == 'Boss':
+                game.boss_turn()
 
-                if g.winner() is None:
-                    q.append(g)
-                elif g.winner() == 'Player':
+                if game.winner() is None:
+                    queue.append(game)
+                elif game.winner() == 'Player':
                     win_ctr += 1
-                    if lowest_mana is None or g.spent_mana < lowest_mana:
-                        lowest_mana = g.spent_mana
-                        lowest_history = g.history
-                elif g.winner() == 'Boss':
+                    if lowest_mana is None or game.spent_mana < lowest_mana:
+                        lowest_mana = game.spent_mana
+                        lowest_history = game.history
+                elif game.winner() == 'Boss':
                     loss_ctr += 1
                 else:
                     print("WTF?")
-            elif g.whose_turn() == 'Player':
-                spells = g.can_cast()
+            elif game.whose_turn() == 'Player':
+                spells = game.can_cast()
                 if not spells:
                     loss_ctr += 1
                 else:
-                    for spell in g.can_cast():
-                        g_prime = copy.deepcopy(g)
+                    for spell in game.can_cast():
+                        g_prime = copy.deepcopy(game)
                         g_prime.player_turn(spell)
 
                         if g_prime.winner() is None:
-                            q.append(g_prime)
+                            queue.append(g_prime)
                         elif g_prime.winner() == 'Player':
                             win_ctr += 1
                             if lowest_mana is None or g_prime.spent_mana < lowest_mana:
@@ -463,20 +485,21 @@ class Day22(Advent):
         print(f"Least mana spent in a winning game: {lowest_mana}")
         return lowest_mana
 
-    def partA(self, debug=False):
+    def part_one(self, debug=False):
         game = EasyGame(50, 500, self.boss_hp, self.boss_damage)
-        lowest_mana = self.findLowestManaWin(game, debug)
+        lowest_mana = self.find_lowest_mana_win(game, debug)
         return lowest_mana
 
-    def partB(self, debug=False):
+    def part_two(self, debug=False):
         game = HardGame(50, 500, self.boss_hp,
                         self.boss_damage, hard_mode=True)
-        lowest_mana = self.findLowestManaWin(game, debug)
+        lowest_mana = self.find_lowest_mana_win(game, debug)
         return lowest_mana
 
 
 def main():
-    aoc1 = Day22(File_to_String("day22-live.txt"))
+    """ stub for main() """
+    aoc1 = Day22(file_to_string("day22-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

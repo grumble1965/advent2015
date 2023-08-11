@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -10,15 +10,15 @@ class Day24(Advent):
     def parse(self):
         pass
 
-    def partA(self):
+    def part_one(self):
         return None
 
-    def partB(self):
+    def part_two(self):
         return None
 
 
 def main():
-    aoc1 = Day24(File_to_String("day24-live.txt"))
+    aoc1 = Day24(file_to_string("day24-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

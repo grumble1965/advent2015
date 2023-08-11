@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -72,7 +72,7 @@ class Day14(Advent):
         maxDistance = max([r.distance for r in self.race])
         return maxDistance
 
-    def partA(self):
+    def part_one(self):
         winner = self.runRaceOld(2504)
         print(f"Final: Winner has travelled {winner}")
         return winner
@@ -93,14 +93,14 @@ class Day14(Advent):
         maxPoints = max([r.get_points() for r in self.race])
         return maxPoints
 
-    def partB(self):
+    def part_two(self):
         winner = self.runRaceNew(2504)
         print(f"Final: Winner has {winner} points")
         return winner
 
 
 def main():
-    aoc1 = Day14(File_to_String("day14-live.txt"))
+    aoc1 = Day14(file_to_string("day14-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

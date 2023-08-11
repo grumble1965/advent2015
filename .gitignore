@@ -1,8 +1,12 @@
 *.pyproj
 *.sln
 .vs/*
-*.pyc
-__pycache__/all_test.cpython-310.pyc
-__pycache__/advent.cpython-38.pyc
-__pycache__/day19.cpython-310.pyc
-__pycache__/day22.cpython-310.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+env.bak/
+venv.bak/

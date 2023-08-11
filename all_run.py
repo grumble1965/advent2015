@@ -1,4 +1,6 @@
-from advent import *
+""" Run all Advent of Code 2015 daily puzzles with live input """
+
+from advent import Runner, file_to_string
 from day01 import Day01
 from day02 import Day02
 from day03 import Day03
@@ -27,31 +29,32 @@ from day25 import Day25
 
 
 def main():
-    runner = Runner(Day01(File_to_String("day01-live.txt"))).run()
-    runner = Runner(Day02(File_to_String("day02-live.txt"))).run()
-    runner = Runner(Day03(File_to_String("day03-live.txt"))).run()
-    runner = Runner(Day04(File_to_String("day04-live.txt"))).run()
-    runner = Runner(Day05(File_to_String("day05-live.txt"))).run()
-    runner = Runner(Day06(File_to_String("day06-live.txt"))).run()
-    runner = Runner(Day07(File_to_String("day07-live.txt"))).run()
-    runner = Runner(Day08(File_to_String("day08-live.txt"))).run()
-    runner = Runner(Day09(File_to_String("day09-live.txt"))).run()
-    runner = Runner(Day10(File_to_String("day10-live.txt"))).run()
-    runner = Runner(Day11(File_to_String("day11-live.txt"))).run()
-    runner = Runner(Day12(File_to_String("day12-live.txt"))).run()
-    runner = Runner(Day13(File_to_String("day13-live.txt"))).run()
-    runner = Runner(Day14(File_to_String("day14-live.txt"))).run()
-    runner = Runner(Day15(File_to_String("day15-live.txt"))).run()
-    runner = Runner(Day16(File_to_String("day16-live.txt"))).run()
-    runner = Runner(Day17(File_to_String("day17-live.txt"))).run()
-    runner = Runner(Day18(File_to_String("day18-live.txt"))).run()
-    runner = Runner(Day19(File_to_String("day19-live.txt"))).run()
-    runner = Runner(Day20(File_to_String("day20-live.txt"))).run()
-    runner = Runner(Day21(File_to_String("day21-live.txt"))).run()
-    runner = Runner(Day22(File_to_String("day22-live.txt"))).run()
-    runner = Runner(Day23(File_to_String("day23-live.txt"))).run()
-    runner = Runner(Day24(File_to_String("day24-live.txt"))).run()
-    runner = Runner(Day25(File_to_String("day25-live.txt"))).run()
+    """ stub for main() """
+    Runner(Day01(file_to_string("day01-live.txt"))).run()
+    Runner(Day02(file_to_string("day02-live.txt"))).run()
+    Runner(Day03(file_to_string("day03-live.txt"))).run()
+    Runner(Day04(file_to_string("day04-live.txt"))).run()
+    Runner(Day05(file_to_string("day05-live.txt"))).run()
+    Runner(Day06(file_to_string("day06-live.txt"))).run()
+    Runner(Day07(file_to_string("day07-live.txt"))).run()
+    Runner(Day08(file_to_string("day08-live.txt"))).run()
+    Runner(Day09(file_to_string("day09-live.txt"))).run()
+    Runner(Day10(file_to_string("day10-live.txt"))).run()
+    Runner(Day11(file_to_string("day11-live.txt"))).run()
+    Runner(Day12(file_to_string("day12-live.txt"))).run()
+    Runner(Day13(file_to_string("day13-live.txt"))).run()
+    Runner(Day14(file_to_string("day14-live.txt"))).run()
+    Runner(Day15(file_to_string("day15-live.txt"))).run()
+    Runner(Day16(file_to_string("day16-live.txt"))).run()
+    Runner(Day17(file_to_string("day17-live.txt"))).run()
+    Runner(Day18(file_to_string("day18-live.txt"))).run()
+    Runner(Day19(file_to_string("day19-live.txt"))).run()
+    Runner(Day20(file_to_string("day20-live.txt"))).run()
+    Runner(Day21(file_to_string("day21-live.txt"))).run()
+    Runner(Day22(file_to_string("day22-live.txt"))).run()
+    Runner(Day23(file_to_string("day23-live.txt"))).run()
+    Runner(Day24(file_to_string("day24-live.txt"))).run()
+    Runner(Day25(file_to_string("day25-live.txt"))).run()
 
 
 if __name__ == '__main__':

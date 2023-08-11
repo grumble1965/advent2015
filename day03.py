@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -24,7 +24,7 @@ class Day03(Advent):
             print(f"Unknown direction {dir}")
         return (x_new, y_new)
 
-    def partA(self):
+    def part_one(self):
         houses = {}
         x, y = 0, 0
         houses[(x, y)] = 1
@@ -40,7 +40,7 @@ class Day03(Advent):
         print(f"Houses receiving a present = {visits}")
         return visits
 
-    def partB(self):
+    def part_two(self):
         houses = {}
         x, y = [0, 0], [0, 0]
         houses[(0, 0)] = 2
@@ -64,7 +64,7 @@ class Day03(Advent):
 
 
 def main():
-    aoc1 = Day03(File_to_String("day03-live.txt"))
+    aoc1 = Day03(file_to_string("day03-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

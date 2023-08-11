@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 import hashlib
 
@@ -81,7 +81,7 @@ class Day07(Advent):
                     if override:
                         self.store['b'] = value
 
-    def partA(self):
+    def part_one(self):
         # init the store and sensistivity lists
         self.initialize()
         # run all of the rules
@@ -93,7 +93,7 @@ class Day07(Advent):
         else:
             return None
 
-    def partB(self):
+    def part_two(self):
         self.initialize()
         self.run()
         override = self.store['a']
@@ -109,7 +109,7 @@ class Day07(Advent):
 
 
 def main():
-    aoc1 = Day07(File_to_String("day07-live.txt"))
+    aoc1 = Day07(file_to_string("day07-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

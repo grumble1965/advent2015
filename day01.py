@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -10,13 +10,13 @@ class Day01(Advent):
     def parse(self):
         pass
 
-    def partA(self):
+    def part_one(self):
         ll = self.line
         left_parens, right_parens = ll.count('('), ll.count(')')
         print(f"Ultimate Floor = {left_parens - right_parens}")
         return left_parens - right_parens
 
-    def partB(self):
+    def part_two(self):
         ll = self.line
         floor, position = 0, 1
         for c in ll:
@@ -32,7 +32,7 @@ class Day01(Advent):
 
 
 def main():
-    aoc1 = Day01(File_to_String("day01-live.txt"))
+    aoc1 = Day01(file_to_string("day01-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

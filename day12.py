@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import re
 import sys
 import json
@@ -24,7 +24,7 @@ class Day12(Advent):
         else:
             raise TypeError()
 
-    def partA(self):
+    def part_one(self):
         file_sum = 0
         for line in self.lines:
             try:
@@ -49,7 +49,7 @@ class Day12(Advent):
         else:
             raise TypeError()
 
-    def partB(self):
+    def part_two(self):
         file_sum = 0
         for line in self.lines:
             try:
@@ -61,7 +61,7 @@ class Day12(Advent):
 
 
 def main():
-    aoc1 = Day12(File_to_String("day12-live.txt"))
+    aoc1 = Day12(file_to_string("day12-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

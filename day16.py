@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -23,7 +23,7 @@ class Day16(Advent):
             self.inventory[key2][name] = int(value2)
             self.inventory[key3][name] = int(value3)
 
-    def partA(self):
+    def part_one(self):
         scene = {'children': 3, 'cats': 7, 'samoyeds': 2, 'pomeranians': 3, 'akitas': 0, 'vizslas': 0, 'goldfish': 5,
                  'trees': 3, 'cars': 2, 'perfumes': 1}
 
@@ -41,7 +41,7 @@ class Day16(Advent):
         print(f"Remainining Sues: {all_sues}")
         return all_sues
 
-    def partB(self):
+    def part_two(self):
         scene_equals = {'children': 3, 'samoyeds': 2,
                         'akitas': 0, 'vizslas': 0, 'cars': 2, 'perfumes': 1}
         scene_greater = {'cats': 7, 'trees': 3}
@@ -82,7 +82,7 @@ class Day16(Advent):
 
 
 def main():
-    aoc1 = Day16(File_to_String("day16-live.txt"))
+    aoc1 = Day16(file_to_string("day16-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

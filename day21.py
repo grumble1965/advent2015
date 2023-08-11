@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 from itertools import permutations, product
 import sys
 
@@ -63,7 +63,7 @@ class Day21(Advent):
                 # print("Boss wins")
                 return "boss"
 
-    def partA(self):
+    def part_one(self):
         winning_configs = set()
         winning_costs = []
         total_configs = 0
@@ -86,7 +86,7 @@ class Day21(Advent):
         print(f"Lowest cost winning configuration is {min(winning_costs)}")
         return min(winning_costs)
 
-    def partB(self):
+    def part_two(self):
         winning_configs = set()
         winning_costs = []
         losing_costs = []
@@ -116,7 +116,7 @@ class Day21(Advent):
 
 
 def main():
-    aoc1 = Day21(File_to_String("day21-live.txt"))
+    aoc1 = Day21(file_to_string("day21-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

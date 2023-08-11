@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -57,7 +57,7 @@ class Day11(Advent):
     def parse(self):
         pass
 
-    def partA(self):
+    def part_one(self):
         passwd = self.increment(self.line)
         # print(f"{tmp} -> {passwd}", end='')
         while not self.valid(passwd):
@@ -70,7 +70,7 @@ class Day11(Advent):
         self.partAResult = passwd
         return passwd
 
-    def partB(self):
+    def part_two(self):
         passwd = self.increment(self.partAResult)
         # print(f"{tmp} -> {passwd}", end='')
         while not self.valid(passwd):
@@ -84,7 +84,7 @@ class Day11(Advent):
 
 
 def main():
-    aoc1 = Day11(File_to_String("day11-live.txt"))
+    aoc1 = Day11(file_to_string("day11-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 

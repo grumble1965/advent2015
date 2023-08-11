@@ -1,4 +1,4 @@
-from advent import Advent, Runner, File_to_String
+from advent import Advent, Runner, file_to_string
 import sys
 
 
@@ -23,7 +23,7 @@ class Day20(Advent):
         else:
             return None
 
-    def partA(self, search_limit=None):
+    def part_one(self, search_limit=None):
         # print("Initialize houses")
         self.houses = {}
         for ee in range(1, self.elf_limit+1):
@@ -48,7 +48,7 @@ class Day20(Advent):
                 return elf
         return None
 
-    def partB(self, search_limit=None):
+    def part_two(self, search_limit=None):
         # print("Initialize houses")
         self.houses = {}
         for ee in range(1, self.elf_limit+1):
@@ -75,7 +75,7 @@ class Day20(Advent):
 
 
 def main():
-    aoc1 = Day20(File_to_String("day20-live.txt"))
+    aoc1 = Day20(file_to_string("day20-live.txt"))
     runner = Runner(aoc1)
     runner.run()
 
