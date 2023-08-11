@@ -571,19 +571,13 @@ class Day23Tests(unittest.TestCase):
 
     def test_part_one(self):
         """ part one """
-        _ = Day23(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
-        # day.parse()
-        # self.assertEqual(999996, day.part_one())
-        self.fail("not implemented")
-
-    def test_part_two(self):
-        """ part two """
-        # day = Day23(['turn on 0,0 through 1,1',
-        #              'toggle 0,0 through 999,999'])
-        # day.parse()
-        # self.assertEqual(2000004, day.part_two())
-        self.fail("not implemented")
+        day = Day23(['inc a\n',
+                     'jio a, +2\n',
+                     'tpl a\n',
+                     'inc a\n'])
+        day.parse()
+        regs = day.part_one()
+        self.assertEqual(2, regs['a'])
 
 
 class Day24Tests(unittest.TestCase):
