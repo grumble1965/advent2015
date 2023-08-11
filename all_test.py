@@ -585,19 +585,17 @@ class Day24Tests(unittest.TestCase):
 
     def test_part_one(self):
         """ part one """
-        _ = Day24(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
-        # d.parse()
-        # self.assertEqual(999996, d.part_one())
-        self.fail("not implemented")
+        day = Day24(['1\n', '2\n', '3\n', '4\n', '5\n',
+                     '7\n', '8\n', '9\n', '10\n', '11\n'])
+        day.parse()
+        self.assertEqual(99, day.part_one())
 
     def test_part_two(self):
         """ part two """
-        # d = Day24(['turn on 0,0 through 1,1',
-        #            'toggle 0,0 through 999,999'])
-        # d.parse()
-        # self.assertEqual(2000004, d.part_two())
-        self.fail("not implemented")
+        day = Day24(['1\n', '2\n', '3\n', '4\n', '5\n',
+                     '7\n', '8\n', '9\n', '10\n', '11\n'])
+        day.parse()
+        self.assertEqual(44, day.part_two())
 
 
 class Day25Tests(unittest.TestCase):
