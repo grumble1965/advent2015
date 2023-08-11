@@ -253,7 +253,7 @@ class Day10Tests(unittest.TestCase):
         for test_input, test_result in cases:
             with self.subTest():
                 day = Day10(test_input)
-                self.assertEqual(test_result, day.lookAndSay(test_input[0]))
+                self.assertEqual(test_result, day.look_and_say(test_input[0]))
 
 
 class Day11Tests(unittest.TestCase):

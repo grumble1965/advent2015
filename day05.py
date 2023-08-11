@@ -1,10 +1,13 @@
+""" Solution for Day 5 """
+
 from advent import Advent, Runner, file_to_string
-import sys
-import hashlib
 
 
 class Day05(Advent):
+    """ Class for Day 5 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "5"
         self.lines = input_text
 
@@ -12,6 +15,7 @@ class Day05(Advent):
         pass
 
     def check_nice_oldway(self, tmp):
+        """ Check if a name is nice the old fashioned way """
         count_vowels = tmp.count('a') + tmp.count('e') + \
             tmp.count('i') + tmp.count('o') + tmp.count('u')
         count_dupes = len([i for i in range(len(tmp)-1) if tmp[i] == tmp[i+1]])
@@ -21,6 +25,7 @@ class Day05(Advent):
         return count_vowels >= 3 and count_dupes > 0 and count_bad == 0
 
     def check_nice_newway(self, tmp):
+        """ Check if a name is nice the new fashioned way """
         rule1 = False
         for i in range(len(tmp)-1):
             pair, rest = tmp[i:i+2], tmp[i+2:]
@@ -57,6 +62,7 @@ class Day05(Advent):
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day05(file_to_string("day05-live.txt"))
     runner = Runner(aoc1)
     runner.run()

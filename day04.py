@@ -1,10 +1,14 @@
-from advent import Advent, Runner, file_to_string
-import sys
+""" Day 4 Solution """
+
 import hashlib
+from advent import Advent, Runner, file_to_string
 
 
 class Day04(Advent):
+    """ Class for Day 4 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "4"
         self.line = input_text[0]
 
@@ -12,6 +16,7 @@ class Day04(Advent):
         pass
 
     def hash_loop(self, key, prefix):
+        """ generate increasing numeric string until the MD6 has a desired prefix string """
         number = 1
         while True:
             target = f"{key}{number}"
@@ -35,6 +40,7 @@ class Day04(Advent):
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day04(file_to_string("day04-live.txt"))
     runner = Runner(aoc1)
     runner.run()

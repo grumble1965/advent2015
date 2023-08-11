@@ -1,10 +1,13 @@
+""" Solution for Day 7 """
+
 from advent import Advent, Runner, file_to_string
-import sys
-import hashlib
 
 
 class Day07(Advent):
+    """ class for day 7 solution """
+
     def __init__(self, input_text):
+        super().__init__()
         self.name = "7"
         self.lines = input_text
         self.rules = []
@@ -18,10 +21,10 @@ class Day07(Advent):
             lops = lhs.split(' ')
 
             if len(lops) == 1:
-                input = lops[0]
-                if not str(input).islower():
-                    input = int(input)
-                self.rules.append(([input], 'ASSIGN', rhs))
+                input_ = lops[0]
+                if not str(input_).islower():
+                    input_ = int(input_)
+                self.rules.append(([input_], 'ASSIGN', rhs))
             elif len(lops) == 2:
                 self.rules.append(([lops[1]], 'NOT', rhs))
             elif len(lops) == 3:
@@ -33,32 +36,34 @@ class Day07(Advent):
                 print(f"Bad parse {lhs} {rhs}")
 
     def initialize(self, override=False, value=None):
+        """ initialize all outputs and internal variables """
         self.sensitivity = []
         self.outputs = []
         for rule in self.rules:
-            (sens_list, command, output) = rule
+            (sens_list, _, output) = rule
             for var in sens_list:
                 if str(var).islower() and var not in self.sensitivity:
                     self.sensitivity.append(var)
             if output not in self.outputs:
                 self.outputs.append(output)
 
-        for vv in self.outputs:
-            self.store[vv] = None
+        for output in self.outputs:
+            self.store[output] = None
 
         if override:
             self.store['b'] = value
 
     def run(self, override=False, value=None):
+        """ run the siumulation until all vars have values """
         while len([var for var in self.store.values() if var is None]) > 0:
             for rule in self.rules:
                 (sens_list, command, output) = rule
                 arg_list = []
-                for vv in sens_list:
-                    if str(vv).islower():
-                        arg_list.append(self.store[vv])
+                for variable in sens_list:
+                    if str(variable).islower():
+                        arg_list.append(self.store[variable])
                     else:
-                        arg_list.append(int(vv))
+                        arg_list.append(int(variable))
                 if None not in arg_list:
                     result = None
                     if command == 'ASSIGN':
@@ -109,6 +114,7 @@ class Day07(Advent):
 
 
 def main():
+    """ stub for main() """
     aoc1 = Day07(file_to_string("day07-live.txt"))
     runner = Runner(aoc1)
     runner.run()
