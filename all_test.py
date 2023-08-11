@@ -603,19 +603,10 @@ class Day25Tests(unittest.TestCase):
 
     def test_part_one(self):
         """ part one """
-        _ = Day25(['turn on 0,0 through 1,1',
-                   'toggle 0,0 through 999,999'])
-        # d.parse()
-        # self.assertEqual(999996, d.part_one())
-        self.fail("not implemented")
-
-    def test_part_two(self):
-        """ part two """
-        # d = Day25(['turn on 0,0 through 1,1',
-        #            'toggle 0,0 through 999,999'])
-        # d.parse()
-        # self.assertEqual(2000004, d.part_two())
-        self.fail("not implemented")
+        day = Day25(
+            ['To continue, please consult the code grid in the manual.  Enter the code at row 6, column 6.\n'])
+        day.parse()
+        self.assertEqual(27995004, day.part_one())
 
 
 if __name__ == '__main__':
