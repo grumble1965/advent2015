@@ -603,8 +603,8 @@ class Day25Tests(unittest.TestCase):
 
     def test_part_one(self):
         """ part one """
-        day = Day25(
-            ['To continue, please consult the code grid in the manual.  Enter the code at row 6, column 6.\n'])
+        day = Day25(['To continue, please consult the code grid in the manual.  '
+                     'Enter the code at row 6, column 6.\n'])
         day.parse()
         self.assertEqual(27995004, day.part_one())
 
